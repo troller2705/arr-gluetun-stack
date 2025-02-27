@@ -85,7 +85,7 @@ If the volume configuration looks like that: <br />
       - /media/arr/sonarr/tvseries:/data/tvshows
       - /media/arr/radarr/movies:/data/movies
 ```
-then on the container you match that right side from the colon ( /data/Movies, /data/TVShows etc )<br />
+then on the container you match that right side from the colon ( /data/movies, /data/tvshows etc )<br />
 
 
 Gluetun should be already configured.<br />
