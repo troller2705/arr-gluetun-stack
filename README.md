@@ -17,8 +17,8 @@ sudo docker-compose stop
 sudo docker-compose rm 
 ```
 
-Go to the folder specified in .yml file (if its /media/Arr then go to /media as root) and 
-run chown command with the user id and group id configured in that .yml file:<br />
+Chage ownership of the main arr folder specified in yml file (by default its /media/arr) and 
+run 'chown' command with the user id and group id configured in that .yml file:<br />
 `chown -R 1000:1000 /media/arr`<br />
 Now you can log on and work with all services.<br />
 
@@ -35,7 +35,7 @@ http://localhost:8080<br />
 and log on using details provided in container logs.<br />
 Go to Tools - Options - WebUI - change the user and password and tick 'bypass authentication for clients on localhost' .<br />
 
-Then first configure Prowlarr service (each of these services will require to set up user/pass):<br />
+Then configure Prowlarr service (each of these services will require to set up user/pass):<br />
 
 **Prowlarr:**<br />
 http://localhost:9696<br />
@@ -45,11 +45,11 @@ Host - leave 'localhost' setting as it is<br />
 
 **Sonarr:**<br />
 http://localhost:8989<br />
-Go to Settings - Media Management - Add Root Folder - set /data/tvshows as your root folder<br />
+Go to Settings - Media Management - Add Root Folder - set your root folder to whatever is on the right side of the colon in 'volumes' setting for Sonarr.<br />
+If its '/media/arr/sonarr/tvseries:/tv' then set it to '/tv' as your root folder<br />
+If its '/media/arr/sonarr/tvseries:/data/TVSeries then set root folder to /data/TVSeries' ( that might differ from image to image so double check)<br /> 
 Go to Settings - Download Clients - click `+` symbol - choose qBittorrent and repeat the steps from Prowlarr.<br />
-(there are also 'Remote Path Mappings' - use only if your qBittorrent and ARR stack are on different hosts / systems)<br />
 Go to Settings - General - scroll down to API key - copy - go to Prowlarr - Settings - Apps -click '+' - Sonarr - paste  API key.<br />
-Then Settings - General - switch to 'show advanced' in top left corner - scroll down to 'Backups' and choose /data/Backup (or whatever location you have in your docker compose file for Sonarr backups )<br />
 
 **Radarr:**<br />
 http://localhost:7878<br />
@@ -64,9 +64,6 @@ Follow the same steps for Lidarr and Readarr as for above applications.<br />
 
 **Readarr:**<br />
 http://localhost:8787<br />
-
-**Homarr:**<br />
-http://localhost:7575<br />
 
 Now go back to Prowlarr and click 'Indexers at the top right, click 'Add indexer' - search for sth like 'rarbg' or 'yts' etc then test - save<br />
 Then click 'Sync App Indexers  icon (next to 'Add indexer')<br />
@@ -83,5 +80,17 @@ Then add media library in Jellyfin  matching folders configured in docker-compos
 /data/Music <br />
 /data/Books <br />
 
-Gluetun should be already configured
+Note that this also might depend on the image, you basically match the right side of the config in Jellyfin's 'volume' configuration. <br />
+If the volume configuration looks like that: <br />
+```
+    volumes:
+      - ${ARRPATH}Radarr/movies:/data/Movies
+      - ${ARRPATH}Sonarr/tvshows:/data/TVShows
+      - ${ARRPATH}Lidarr/music:/data/Music
+      - ${ARRPATH}Readarr/books:/data/Books
+```
+then on the container you match that right side from the colon ( /data/Movies, /data/TVShows etc )<br />
+
+
+Gluetun should be already configured.<br />
 
