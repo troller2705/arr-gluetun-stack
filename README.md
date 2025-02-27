@@ -75,19 +75,15 @@ http://localhost:8096<br />
 If you run `docker-compose up` and have something running on port 1900 -  its most possibly rygel service, run:<br />
 `sudo apt-get remove rygel` and run the `sudo docker-compose up -d` again.<br />
 Then add media library in Jellyfin  matching folders configured in docker-compose.yml file, so in Jellyfin you should see them as: <br />
-/data/Movies <br />
-/data/TVShows <br />
-/data/Music <br />
-/data/Books <br />
+/data/movies <br />
+/data/tvshows <br />
 
 Note that this also might depend on the image, you basically match the right side of the config in Jellyfin's 'volume' configuration. <br />
 If the volume configuration looks like that: <br />
 ```
     volumes:
-      - ${ARRPATH}Radarr/movies:/data/Movies
-      - ${ARRPATH}Sonarr/tvshows:/data/TVShows
-      - ${ARRPATH}Lidarr/music:/data/Music
-      - ${ARRPATH}Readarr/books:/data/Books
+      - /media/arr/sonarr/tvseries:/data/tvshows
+      - /media/arr/radarr/movies:/data/movies
 ```
 then on the container you match that right side from the colon ( /data/Movies, /data/TVShows etc )<br />
 
