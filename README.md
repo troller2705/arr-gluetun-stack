@@ -63,7 +63,7 @@ http://localhost:8686<br />
 Follow the same steps for Lidarr and Readarr as for above applications.<br />
 
 **Readarr:**<br />
-http://localhost:8787<br />
+(This image has been REMOVED on 23rd July 2025 as its no longer supported by linuxserver.io)
 
 Now go back to Prowlarr and click 'Indexers at the top right, click 'Add indexer' - search for sth like 'rarbg' or 'yts' etc then test - save<br />
 Then click 'Sync App Indexers  icon (next to 'Add indexer')<br />
