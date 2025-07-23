@@ -143,7 +143,6 @@ services:
       - 8989:8989 #sonarr
       - 6767:6767 #bazarr
       - 8686:8686 #lidarr
-      - 8787:8787 #readarr
       - 8080:8080 #qbittorrent
       - 6881:6881 #qbittorrent
       - 6881:6881/udp #qbittorrent
