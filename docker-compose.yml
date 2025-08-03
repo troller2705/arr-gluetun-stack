@@ -20,6 +20,24 @@ services:
     restart: unless-stopped
 
 ############################
+# WIZARR
+############################
+
+  wizarr:
+    image: ghcr.io/wizarrrr/wizarr
+    container_name: wizarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - DISABLE_BUILTIN_AUTH=false #Set to true ONLY if you are using another auth provider (Authelia, Authentik, etc)
+    volumes:
+      - /media/arr/wizarr/config/database:/data/database
+    ports:
+      - 5690:5690
+    restart: unless-stopped
+
+############################
 # READARR
 ############################
 
