@@ -41,7 +41,7 @@ services:
 # READARR
 ############################
 
-  radarr:
+  readarr:
     image: lscr.io/linuxserver/readarr:develop
     container_name: readarr
     network_mode: "service:gluetun"
