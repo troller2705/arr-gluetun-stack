@@ -18,6 +18,24 @@ services:
       - /media/arr/radarr/movies:/movies #optional
       - /media/arr/qbittorrent/downloads:/downloads #optional
     restart: unless-stopped
+
+############################
+# READARR
+############################
+
+  radarr:
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: readarr
+    network_mode: "service:gluetun"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /media/arr/readarr/config:/config
+      - /media/arr/readarr/books:/books #optional
+      - /media/arr/qbittorrent/downloads:/downloads #optional
+    restart: unless-stopped
     
 ############################
 # SONARR
@@ -34,6 +52,24 @@ services:
     volumes:
       - /media/arr/sonarr/config:/config
       - /media/arr/sonarr/tvseries:/tv #optional
+      - /media/arr/qbittorrent/downloads:/downloads #optional
+    restart: unless-stopped
+
+############################
+# MYLAR3
+############################
+
+  mylar3:
+    image: lscr.io/linuxserver/mylar3:latest
+    container_name: mylar3
+    network_mode: "service:gluetun"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /media/arr/mylar3/config:/config
+      - /media/arr/mylar3/comics:/comics #optional
       - /media/arr/qbittorrent/downloads:/downloads #optional
     restart: unless-stopped
     
@@ -124,6 +160,21 @@ services:
     ports:
       - 5055:5055
     restart: unless-stopped
+
+############################
+# FLARESOLVERR	
+############################
+
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    ports:
+      - 8191:8191
+    restart: unless-stopped
     
 ############################
 # GLUETUN
@@ -138,6 +189,8 @@ services:
       - 8989:8989 #sonarr
       - 6767:6767 #bazarr
       - 8686:8686 #lidarr
+      - 8787:8787 #readarr
+      - 8090:8090 #mylar3
       - 8080:8080 #qbittorrent
       - 6881:6881 #qbittorrent
       - 6881:6881/udp #qbittorrent
@@ -150,7 +203,7 @@ services:
       - VPN_TYPE=openvpn # or wireguard
       - OPENVPN_USER=<your vpn user>
       - OPENVPN_PASSWORD=<your vpn password>
-      - SERVER_COUNTRIES=Netherlands
+      - SERVER_COUNTRIES=Canada
       
 ############################
 
