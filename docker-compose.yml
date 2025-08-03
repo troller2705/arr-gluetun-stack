@@ -18,24 +18,6 @@ services:
       - /media/arr/radarr/movies:/movies #optional
       - /media/arr/qbittorrent/downloads:/downloads #optional
     restart: unless-stopped
-
-############################
-# READARR
-############################
-
-  readarr:
-    image: lscr.io/linuxserver/readarr:develop
-    container_name: readarr
-    network_mode: "service:gluetun"
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Etc/UTC
-    volumes:
-      - /media/arr/readarr/config:/config
-      - /media/arr/readarr/books:/books #optional
-      - /media/arr/qbittorrent/downloads:/downloads #optional
-    restart: unless-stopped
     
 ############################
 # SONARR
