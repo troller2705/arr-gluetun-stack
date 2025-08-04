@@ -19,6 +19,25 @@ services:
     ports:
       - 7878:7878 #radarr
     restart: unless-stopped
+
+############################
+# READARR
+############################
+
+  readarr:
+    image: lscr.io/linuxserver/readarr:develop
+    container_name: readarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /media/arr/readarr/config:/config
+      - /media/arr/readarr/books:/books #optional
+      - /media/arr/qbittorrent/downloads:/downloads #optional
+    ports:
+      - 8787:8787 #readarr
+    restart: unless-stopped
     
 ############################
 # SONARR
