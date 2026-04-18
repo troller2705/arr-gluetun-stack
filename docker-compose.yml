@@ -14,7 +14,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /media/arr/radarr/config:/config
-      - /media/arr/radarr/movies:/movies #optional
+      - /media/arr/radarr/Movies:/movies #optional
       - /media/arr/qbittorrent/downloads:/downloads #optional
     ports:
       - 7878:7878 #radarr
@@ -33,7 +33,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /media/arr/readarr/config:/config
-      - /media/arr/readarr/books:/books #optional
+      - /media/arr/readarr/Books:/books #optional
       - /media/arr/qbittorrent/downloads:/downloads #optional
     ports:
       - 8787:8787 #readarr
@@ -52,7 +52,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /media/arr/sonarr/config:/config
-      - /media/arr/sonarr/tvseries:/tv #optional
+      - "/media/arr/sonarr/TV Shows:/tv" #optional
       - /media/arr/qbittorrent/downloads:/downloads #optional
     ports:
       - 8989:8989 #sonarr
@@ -71,7 +71,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /media/arr/mylar3/config:/config
-      - /media/arr/mylar3/comics:/comics #optional
+      - /media/arr/mylar3/Comics:/comics #optional
       - /media/arr/qbittorrent/downloads:/downloads #optional
     ports:
       - 8090:8090 #mylar3
@@ -107,8 +107,8 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /media/arr/bazarr/config:/config
-      - /media/arr/radarr/movies:/movies #optional
-      - /media/arr/sonarr/tvseries:/tv #optional
+      - /media/arr/radarr/Movies:/movies #optional
+      - "/media/arr/sonarr/TV Shows:/tv" #optional
     ports:
       - 6767:6767 #bazarr
     restart: unless-stopped
@@ -126,7 +126,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /media/arr/lidarr/config:/config
-      - /media/arr/lidarr/music:/music #optional
+      - /media/arr/lidarr/Music:/music #optional
       - /media/arr/qbittorrent/downloads:/downloads #optional
     ports:
       - 8686:8686 #lidarr
