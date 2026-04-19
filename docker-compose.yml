@@ -53,6 +53,7 @@ services:
     volumes:
       - /media/arr/sonarr/config:/config
       - "/media/arr/sonarr/TV Shows:/tv" #optional
+      - /media/arr/sonarr/Anime:/anime
       - /media/arr/qbittorrent/downloads:/downloads #optional
     ports:
       - 8989:8989 #sonarr
